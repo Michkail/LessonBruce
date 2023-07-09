@@ -14,12 +14,11 @@ try:
     # wlan
     wifi = PyWiFi()
     i_faces = wifi.interfaces()[0]
-
     i_faces.scan()  # check the card
     results = i_faces.scan_results()
-
     wifi = pywifi.PyWiFi()
     iface = wifi.interfaces()[0]
+
 except Exception as e:
     print("[-] Error system", e)
 
@@ -32,8 +31,8 @@ def main(ssid, password):
     profile.auth = const.AUTH_ALG_OPEN
     profile.akm.append(const.AKM_TYPE_WPA2PSK)
     profile.cipher = const.CIPHER_TYPE_CCMP
-
     profile.key = password
+
     iface.remove_all_network_profiles()
     tmp_profile = iface.add_network_profile(profile)
     time.sleep(0.5)
@@ -46,6 +45,7 @@ def main(ssid, password):
         print("[+] Password is: " + password)
         time.sleep(1)
         return "Success"
+
     else:
         print('[-] Password Not Found! : ' + password)
 
@@ -56,6 +56,7 @@ def pwd(ssid, file):
             line = line.split("\n")
             securing = line[0]
             result = main(ssid, securing)
+
             if result == "Success":
                 break
 

